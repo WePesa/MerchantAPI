@@ -6,7 +6,7 @@
     <title>Monitex.Client</title>
     <authors>Ademar Gonzalez</authors>
     <owners>ademar</owners>
-    <licenseUrl>https://github.com/MonitexInc/MerchantAPI/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/MonitexInc/MerchantAPI/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/MonitexInc/MerchantAPI</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This is a .NET client for Monitex's Bitcoin Payments API.</description>
