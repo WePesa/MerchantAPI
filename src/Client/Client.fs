@@ -11,10 +11,8 @@ open System.Text
 
 open Newtonsoft.Json
 
-type CreateOrderRequest() =
+type CreateOrderRequest(amount : decimal, currency : string) =
 
-    let mutable amount : decimal = 0M
-    let mutable currency : string = "btc"
     let mutable data : string = null
     let mutable priority : int = 0
     let mutable ttl : int = 15 // minutes
@@ -22,8 +20,6 @@ type CreateOrderRequest() =
     let mutable urlSuccess : string = null
     let mutable urlFailure : string = null
 
-    member x.Amount with get() = amount and set(v) = amount <- v
-    member x.Currency with get() = currency and set(v) = currency <- v
     member x.Data with get() = data and set(v) = data <- v
     member x.Priority with get() = priority and set(v) = priority <- v
     member x.Ttl with get() = ttl and set(v) = ttl <- v
@@ -73,7 +69,7 @@ type CreateOrderResponse() =
     [<JsonProperty("Url")>]
     member x.Url with get() = url and set(v) = url <- v
 
-type Client(serverUrl : string, id : string, key : string, ?data : string, ?ttl : int) =
+type Client(serverUrl : string, id : string, key : string) =
     
     let endPointUrl = serverUrl + "/createOrder"
 
@@ -91,14 +87,11 @@ type Client(serverUrl : string, id : string, key : string, ?data : string, ?ttl 
 
       getResponseBody request
 
-    member this.CreateOrder(amount: decimal,currency : string) : CreateOrderResponse =
+    member this.CreateOrder(request : CreateOrderRequest) : CreateOrderResponse =
 
       match Hawk.Client.header (new Uri(endPointUrl)) Hawk.Types.HttpMethod.POST (Hawk.Client.ClientOptions.mkSimple(cred)) with
       | Choice1Of2 hawk ->
-        let newOrder = new CreateOrderRequest()
-        newOrder.Amount <- amount
-        newOrder.Currency <- currency
-        let serializedObject = JsonConvert.SerializeObject(newOrder)
+        let serializedObject = JsonConvert.SerializeObject(request)
         let response = call hawk.mac serializedObject
         JsonConvert.DeserializeObject<CreateOrderResponse>(response)
       | Choice2Of2 _    -> failwith "Couldn't create Hawk header."
