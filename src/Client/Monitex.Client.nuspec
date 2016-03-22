@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Monitex.Client</id>
+    <version>1.0.0</version>
+    <title>Monitex.Client</title>
+    <authors>Ademar Gonzalez</authors>
+    <owners>ademar</owners>
+    <licenseUrl>https://github.com/MonitexInc/MerchantAPI/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/MonitexInc/MerchantAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is a .NET client for Monitex's Bitcoin Payments API.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>bitcoin payment</tags>
+  </metadata>
+    <files>
+        <file src="bin\Debug\Monitex.Client.dll" target="lib\Monitex.Client.dll" />
+    </files>
+</package>
