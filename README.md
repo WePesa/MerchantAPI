@@ -21,11 +21,13 @@ var client = new Monitex.Client("https://api.bitbuy.ca"
   // Do not use these keys, create a new pair of API keys in the control panel
   , "HAWK_ID"
   , "HAWK_KEY" );
+  
+var request = new CreateOrderRequest(invoice.Amount,"cad");
 
-client.Data = invoice.Id;
-client.Ttl  = 30; // minutes
+request.Data = invoice.Id;
+request.Ttl  = 30; // minutes
 
-var order = client.CreateOrder(invoice.Amount,"CAD");
+var response = client.CreateOrder(request);
 
-RedirectToUrl(order.url);
+RedirectToUrl(response.url);
 ```
