@@ -13,6 +13,8 @@ open Newtonsoft.Json
 
 type CreateOrderRequest(amount : decimal, currency : string) =
 
+    let mutable amount : decimal = amount
+    let mutable currency : string = currency
     let mutable data : string = null
     let mutable priority : int = 0
     let mutable ttl : int = 15 // minutes
@@ -20,11 +22,22 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     let mutable urlSuccess : string = null
     let mutable urlFailure : string = null
 
+    
+    [<JsonProperty("Amount")>]
+    member x.Amount with get() = amount and set(v) = amount <- v
+    [<JsonProperty("Currency")>]
+    member x.Currency with get() = currency and set(v) = currency <- v
+    [<JsonProperty("Data")>]
     member x.Data with get() = data and set(v) = data <- v
+    [<JsonProperty("Priority")>]
     member x.Priority with get() = priority and set(v) = priority <- v
+    [<JsonProperty("Ttl")>]
     member x.Ttl with get() = ttl and set(v) = ttl <- v
+    [<JsonProperty("UrlCallback")>]
     member x.UrlCallback with get() = urlCallBack and set(v) = urlCallBack <- v
+    [<JsonProperty("UrlSuccess")>]
     member x.UrlSuccess with get() = urlSuccess and set(v) = urlSuccess <- v
+    [<JsonProperty("UrlFailure")>]
     member x.UrlFailure with get() = urlFailure and set(v) = urlFailure <- v
 
 type CreateOrderResponse() =
@@ -78,20 +91,24 @@ type Client(serverUrl : string, id : string, key : string) =
           key       = key
           algorithm = SHA256 }
 
-    let call mac data =
+    let call headerValue data =
 
       let request = 
         createRequest Post endPointUrl
-        |> withHeader (Custom {name = "Hawk"; value = mac })
+        |> withHeader (Custom {name = "Authorization"; value = headerValue })
         |> withBody data
 
       getResponseBody request
 
-    member this.CreateOrder(request : CreateOrderRequest) : CreateOrderResponse =
-
-      match Hawk.Client.header (new Uri(endPointUrl)) Hawk.Types.HttpMethod.POST (Hawk.Client.ClientOptions.mkSimple(cred)) with
+    member this.CreateOrderAsString(request : CreateOrderRequest) : string =
+      let serializedObject = JsonConvert.SerializeObject(request)
+      match Hawk.Client.header (new Uri(endPointUrl)) Hawk.Types.HttpMethod.POST ({ Hawk.Client.ClientOptions.mkSimple(cred) with payload = Some (UnicodeEncoding.UTF8.GetBytes serializedObject)} ) with
       | Choice1Of2 hawk ->
-        let serializedObject = JsonConvert.SerializeObject(request)
-        let response = call hawk.mac serializedObject
-        JsonConvert.DeserializeObject<CreateOrderResponse>(response)
+
+        let response = call hawk.header serializedObject
+        response
       | Choice2Of2 _    -> failwith "Couldn't create Hawk header."
+
+    member this.CreateOrder(request : CreateOrderRequest) : CreateOrderResponse =
+        let response = this.CreateOrderAsString(request)
+        JsonConvert.DeserializeObject<CreateOrderResponse>(response)
