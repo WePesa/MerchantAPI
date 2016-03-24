@@ -4,6 +4,10 @@ This is a .NET client for Monitex's Bitcoin Payments API.
 
 This is the reference implementation.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/95vn1krk9hajaax8/branch/master?svg=true)](https://ci.appveyor.com/project/AdemarGonzalez/merchantapi/branch/master)
+
+
+
 NuGet
 =====
 
