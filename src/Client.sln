@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Monitex.Client", "Client\Monitex.Client.fsproj", "{FBE8D86D-A451-4181-AD8E-D89F809AA2EA}"
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "Monitex.Client", "Client\Monitex.Client.fsproj", "{FBE8D86D-A451-4181-AD8E-D89F809AA2EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.1
 	EndGlobalSection
 EndGlobal
