@@ -16,7 +16,6 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     let mutable amount : decimal = amount
     let mutable currency : string = currency
     let mutable data : string = null
-    let mutable priority : int = 0
     let mutable ttl : int = 15 // minutes
     let mutable urlCallBack : string = null
     let mutable urlSuccess : string = null
@@ -29,8 +28,6 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     member x.Currency with get() = currency and set(v) = currency <- v
     [<JsonProperty("Data")>]
     member x.Data with get() = data and set(v) = data <- v
-    [<JsonProperty("Priority")>]
-    member x.Priority with get() = priority and set(v) = priority <- v
     [<JsonProperty("Ttl")>]
     member x.Ttl with get() = ttl and set(v) = ttl <- v
     [<JsonProperty("UrlCallback")>]
