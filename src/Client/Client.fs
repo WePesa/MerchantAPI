@@ -1,9 +1,5 @@
 ﻿namespace Monitex
 
-open Logibit
-open Logibit.Hawk
-open Logibit.Hawk.Types
-
 open HttpClient
 
 open System
@@ -16,6 +12,7 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     let mutable amount : decimal = amount
     let mutable currency : string = currency
     let mutable data : string = null
+    let mutable priority : int = 0
     let mutable ttl : int = 15 // minutes
     let mutable urlCallBack : string = null
     let mutable urlSuccess : string = null
@@ -28,6 +25,8 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     member x.Currency with get() = currency and set(v) = currency <- v
     [<JsonProperty("Data")>]
     member x.Data with get() = data and set(v) = data <- v
+    [<JsonProperty("Priority")>]
+    member x.Priority with get() = priority and set(v) = priority <- v
     [<JsonProperty("Ttl")>]
     member x.Ttl with get() = ttl and set(v) = ttl <- v
     [<JsonProperty("UrlCallback")>]
@@ -79,33 +78,23 @@ type CreateOrderResponse() =
     [<JsonProperty("Url")>]
     member x.Url with get() = url and set(v) = url <- v
 
-type Client(serverUrl : string, id : string, key : string) =
+type Client(serverUrl : string, termailId : string, password : string) =
     
-    let endPointUrl = serverUrl + "/createOrder"
+    let endPointUrl = serverUrl + "/createPayment"
 
-    let cred =
-        { id        = id
-          key       = key
-          algorithm = SHA256 }
-
-    let call headerValue data =
-
+    let call data =
       let request = 
         createRequest Post endPointUrl
-        |> withHeader (Custom {name = "Authorization"; value = headerValue })
+        |> HttpClient.withBasicAuthentication termailId password
         |> withBody data
 
       getResponseBody request
 
-    member this.CreateOrderAsString(request : CreateOrderRequest) : string =
+    member this.CreatePaymentAsString(request : CreateOrderRequest) : string =
       let serializedObject = JsonConvert.SerializeObject(request)
-      match Hawk.Client.header (new Uri(endPointUrl)) Hawk.Types.HttpMethod.POST ({ Hawk.Client.ClientOptions.mkSimple(cred) with payload = Some (UnicodeEncoding.UTF8.GetBytes serializedObject)} ) with
-      | Choice1Of2 hawk ->
+      let response = call serializedObject
+      response
 
-        let response = call hawk.header serializedObject
-        response
-      | Choice2Of2 _    -> failwith "Couldn't create Hawk header."
-
-    member this.CreateOrder(request : CreateOrderRequest) : CreateOrderResponse =
-        let response = this.CreateOrderAsString(request)
+    member this.CreatePayment(request : CreateOrderRequest) : CreateOrderResponse =
+        let response = this.CreatePaymentAsString(request)
         JsonConvert.DeserializeObject<CreateOrderResponse>(response)

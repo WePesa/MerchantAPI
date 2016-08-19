@@ -69,10 +69,6 @@
       <HintPath>..\packages\Http.fs.1.5.1\lib\net40\HttpClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Logibit.Hawk">
-      <HintPath>..\packages\Hawk.3.0.1\lib\net40\Logibit.Hawk.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
