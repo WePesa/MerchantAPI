@@ -68,16 +68,16 @@ Sample client code in C#
 
 ```csharp
 var client = new Monitex.Client("https://api.bitbuy.ca"
-  // Do not use these keys, create a new pair of API keys in the control panel
-  , "HAWK_ID"
-  , "HAWK_KEY" );
+  // Do not use these credentials, create a new pair in the merchant panel
+  , "TerminalId"
+  , "TermialPassword" );
   
-var request = new CreateOrderRequest(invoice.Amount,"cad");
+var request = new CreatePaymentRequest(invoice.Amount,"cad");
 
 request.Data = invoice.Id;
 request.Ttl  = 30; // minutes
 
-var response = client.CreateOrder(request);
+var response = client.CreatePayment(request);
 
 RedirectToUrl(response.url);
 ```
