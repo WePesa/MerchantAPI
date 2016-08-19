@@ -7,7 +7,7 @@ open System.Text
 
 open Newtonsoft.Json
 
-type CreateOrderRequest(amount : decimal, currency : string) =
+type CreatePaymentRequest(amount : decimal, currency : string) =
 
     let mutable amount : decimal = amount
     let mutable currency : string = currency
@@ -36,7 +36,7 @@ type CreateOrderRequest(amount : decimal, currency : string) =
     [<JsonProperty("UrlFailure")>]
     member x.UrlFailure with get() = urlFailure and set(v) = urlFailure <- v
 
-type CreateOrderResponse() =
+type CreatePaymentResponse() =
     let mutable id : string = null
     let mutable total    : decimal = 0.00M
     let mutable currency       : string = "btc"
@@ -90,11 +90,11 @@ type Client(serverUrl : string, termailId : string, password : string) =
 
       getResponseBody request
 
-    member this.CreatePaymentAsString(request : CreateOrderRequest) : string =
+    member this.CreatePaymentAsString(request : CreatePaymentRequest) : string =
       let serializedObject = JsonConvert.SerializeObject(request)
       let response = call serializedObject
       response
 
-    member this.CreatePayment(request : CreateOrderRequest) : CreateOrderResponse =
+    member this.CreatePayment(request : CreatePaymentRequest) : CreatePaymentResponse =
         let response = this.CreatePaymentAsString(request)
-        JsonConvert.DeserializeObject<CreateOrderResponse>(response)
+        JsonConvert.DeserializeObject<CreatePaymentResponse>(response)
