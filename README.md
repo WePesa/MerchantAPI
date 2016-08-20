@@ -6,7 +6,6 @@ This is the client reference implementation.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/95vn1krk9hajaax8/branch/master?svg=true)](https://ci.appveyor.com/project/AdemarGonzalez/merchantapi/branch/master)
 
-
 ## Create a Payment session
 
 A payment session is initiated by sending a autheticated POST request to https://api.bitbuy.ca/v1/createPayment with a JSON payload.
@@ -27,16 +26,16 @@ and its result
 
 ### Required fields.
 
-amount : amount of currency to collect from the buyer
-currency : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.
+amount : amount of currency to collect from the buyer.  
+currency : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.  
 
 ### Optional fields
 
-data : optional data field value will be sent back on the callback fi there is any.
-ttl : number of minutes before the payment session expires.
-urlCallback : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.
-urlSuccess : used in the web base invoice.
-urlFailure : used in the web base invoice.
+data : optional data field value will be sent back on the callback fi there is any.  
+ttl : number of minutes before the payment session expires.  
+urlCallback : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
+urlSuccess : used in the web base invoice.  
+urlFailure : used in the web base invoice.  
 
 ## Payment Status
 
@@ -70,7 +69,7 @@ Sample client code in C#
 var client = new Monitex.Client("https://api.bitbuy.ca"
   // Do not use these credentials, create a new pair in the merchant panel
   , "TerminalId"
-  , "TermialPassword" );
+  , "TerminalPassword" );
   
 var request = new CreatePaymentRequest(invoice.Amount,"cad");
 
