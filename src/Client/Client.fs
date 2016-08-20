@@ -80,7 +80,7 @@ type CreatePaymentResponse() =
 
 type Client(serverUrl : string, termailId : string, password : string) =
     
-    let endPointUrl = serverUrl + "/createPayment"
+    let endPointUrl = serverUrl + "/v1/createPayment"
 
     let call data =
       let request = 
