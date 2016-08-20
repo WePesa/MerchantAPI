@@ -69,7 +69,7 @@ Sample client code in C#
 var client = new Monitex.Client("https://api.bitbuy.ca"
   // Do not use these credentials, create a new pair in the merchant panel
   , "TerminalId"
-  , "TermialPassword" );
+  , "TerminalPassword" );
   
 var request = new CreatePaymentRequest(invoice.Amount,"cad");
 
