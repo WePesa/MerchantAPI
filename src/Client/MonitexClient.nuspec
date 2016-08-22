@@ -13,17 +13,13 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>bitcoin payment</tags>
-  </metadata>
-    <files>
-        <file src="bin\Debug\Monitex.Client.dll" target="lib\Monitex.Client.dll" />
-    </files>
-	
-
-<dependencies>
+	<dependencies>
   <dependency id="FSharp.Core" version="3.1.2.5" />
   <dependency id="Http.fs" version="1.5.1" />
   <dependency id="Newtonsoft.Json" version="8.0.3" />
 </dependencies>
-
-
+  </metadata>
+    <files>
+        <file src="bin\Debug\Monitex.Client.dll" target="lib\Monitex.Client.dll" />
+    </files>
 </package>
