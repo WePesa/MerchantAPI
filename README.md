@@ -8,7 +8,7 @@ This is the client reference implementation.
 
 ## Create a Payment session
 
-A payment session is initiated by sending a autheticated POST request to https://api.bitbuy.ca/v1/createPayment with a JSON payload.
+A payment session is initiated by sending a authenticated POST request to https://api.bitbuy.ca/v1/createPayment with a JSON payload.
 
 You can create a set of terminal credentials to use with the API in the Merchant control panel under menu option Terminals.
 
