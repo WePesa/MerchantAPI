@@ -1,6 +1,6 @@
 # MerchantAPI
 
-This is a .NET client for Monitex's Bitcoin Payments API.
+This is a .NET client for BitBUY.ca Bitcoin Payments API.
 
 This is the client reference implementation.
 
