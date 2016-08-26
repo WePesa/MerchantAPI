@@ -15,41 +15,55 @@ You can create a set of terminal credentials to use with the API in the Merchant
 ### Example calling `createPayment` with CURL.
 
 ```bash
-curl -u terminalid:password -H "content-Type: application/json" -X POST -d '{ "amount" : 1.23,  "currency" : "CAD" }' https://api.bitbuy.ca/v1/createPayment
+curl -u terminalid:password -H "content-Type: application/json" \
+ -X POST -d '{ "amount" : 1.23,  "currency" : "CAD" }' https://api.bitbuy.ca/v1/createPayment
 ```
 
 and its result
 
 ```json
-{"Id":"ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu","Total":1.23000000,"Currency":"CAD","BtcRequired":0.00167342,"Data":"","CreatedOn":"2016-08-19T20:19:05","ExpiresOn":"2016-08-19T20:26:05","Status":"WAITING","LastUpdate":"2016-08-19T20:19:05","Url":"https://api.bitbuy.ca/v1/invoice?id=ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu"}
+{
+   "Id":"ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu",
+   "Total":1.23000000,
+   "Currency":"CAD",
+   "BtcRequired":0.00167342,
+   "Data":"",
+   "CreatedOn":"2016-08-19T20:19:05",
+   "ExpiresOn":"2016-08-19T20:26:05",
+   "Status":"WAITING",
+   "LastUpdate":"2016-08-19T20:19:05",
+   "Url":"https://api.bitbuy.ca/v1/invoice?id=ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu"
+}
 ```
 
 ### Required fields.
 
-amount : amount of currency to collect from the buyer.  
-currency : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.  
+**amoun**t : amount of currency to collect from the buyer.  
+**currency** : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.  
 
 ### Optional fields
 
-data : optional data field value will be sent back on the callback fi there is any.  
-ttl : number of minutes before the payment session expires.  
-urlCallback : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
-urlSuccess : used in the web base invoice.  
+**data** : optional data field value will be sent back on the callback fi there is any.  
+**ttl** : number of minutes before the payment session expires.  
+**urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
+**urlSuccess** : used in the web base invoice.  
 urlFailure : used in the web base invoice.  
 
 ## Payment Status
 
-"WAITING" - Waiting for 0-confirmation.
+**"WAITING"** - Waiting for 0-confirmation.
 
-"PAID" - The 0-confirmation payment transaction has been received.
+**"PARTIAL"** - The total sum of 0-confirmation payment is less than the amount of Bitcoin required.
 
-"CONFIRMED" - Payment is confirmed; Depending on the speed setting it will be triggered at 0, 1 or 6 confirmations.
+**"PAID"** - The total sum of 0-confirmation payment sent to the invoice address is equal or larger than the amount of Bitcoin required.
 
-"COMPLETED" - Payment has been credited to the merchant. This happens after 6 confirmations.
+**"CONFIRMED"** - Payment is confirmed; Depending on the speed setting it will be triggered at 0, 1 or 6 confirmations.
 
-"CANCELLED" - Payment has been cancelled by the terminal operator.
+**"COMPLETED"** - Payment has been credited to the merchant. This happens after 6 confirmations.
 
-"EXPIRED" - 0-confirmation was not received within TTL minutes.
+**"CANCELLED"** - Payment has been cancelled by the terminal operator.
+
+**"EXPIRED"** - 0-confirmation was not received within TTL minutes.
 
 ## Using the .NET client
 
