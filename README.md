@@ -46,8 +46,8 @@ and its result
 **data** : optional data field value will be sent back on the callback fi there is any.  
 **ttl** : number of minutes before the payment session expires.  
 **urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
-**urlSuccess** : used in the web base invoice.  
-**urlFailure** : used in the web base invoice.  
+**urlSuccess** : used in the invoice.  
+**urlFailure** : used in the invoice.  
 
 ## Payment Status
 
