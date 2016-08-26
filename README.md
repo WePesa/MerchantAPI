@@ -62,7 +62,7 @@ All API requests should use the application/json content type, and must be encry
    }
 ```
 
-  **Id** : Payment or Invoice Id is a string of 32 characters.  
+  **Id** : Payment Id is a cryptographically strong id of size 32.  
   **Total** : The invoice amount.  
   **Currency** : The invoice currency.  
   **BtcRequired** : The amount of Bitcoin required to pay this invoice.  
