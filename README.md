@@ -62,15 +62,15 @@ All API requests should use the application/json content type, and must be encry
    }
 ```
 
-  **Id** : Payment or Invoice Id is a string of 32 characters.
-  **Total** : The invoice amount
-  **Currency** : The invoice currency
-  **BtcRequired** : The amount of Bitcoin required to pay this invoice.
-  **CreatedOn** : Date the payment session was created in UTC
-  **ExpiresOn** : Date the payment session expired in UTC
-  **Status** : Payment status (see below)
-  **LastUpdate** : used in the invoice.
-  **Url** : Invoice URL; redirect customer or show inside IFRAME.
+  **Id** : Payment or Invoice Id is a string of 32 characters.  
+  **Total** : The invoice amount.  
+  **Currency** : The invoice currency.  
+  **BtcRequired** : The amount of Bitcoin required to pay this invoice.  
+  **CreatedOn** : Date the payment session was created in UTC.  
+  **ExpiresOn** : Date the payment session expired in UTC.  
+  **Status** : Payment status (see below).  
+  **LastUpdate** : used in the invoice.  
+  **Url** : Invoice URL; redirect customer or show inside IFRAME.  
   
 * **Example calling `createPayment` with CURL.**
 
