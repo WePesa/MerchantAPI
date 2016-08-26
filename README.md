@@ -47,7 +47,7 @@ and its result
 **ttl** : number of minutes before the payment session expires.  
 **urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
 **urlSuccess** : used in the web base invoice.  
-urlFailure : used in the web base invoice.  
+**urlFailure** : used in the web base invoice.  
 
 ## Payment Status
 
