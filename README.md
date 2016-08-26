@@ -30,18 +30,18 @@ All API requests should use the application/json content type, and must be encry
 
   { "amount" : 1.23,  "currency" : "CAD" }
 
-### Required fields.
+  ### Required fields.
 
-**amoun**t : amount of currency to collect from the buyer.  
-**currency** : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.  
+  **amoun**t : amount of currency to collect from the buyer.  
+  **currency** : if currency different than Bitcoin then the amount will be converted to BTC using market rates and such amount collected from the buyer.  
 
-### Optional fields
+  ### Optional fields
 
-**data** : optional data field value will be sent back on the callback fi there is any.  
-**ttl** : number of minutes before the payment session expires.  
-**urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
-**urlSuccess** : used in the invoice.  
-**urlFailure** : used in the invoice.  
+  **data** : optional data field value will be sent back on the callback fi there is any.  
+  **ttl** : number of minutes before the payment session expires.  
+  **urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
+  **urlSuccess** : used in the invoice.  
+  **urlFailure** : used in the invoice.  
 
 * **Success Response:**
 
@@ -62,7 +62,7 @@ All API requests should use the application/json content type, and must be encry
    }
 ```
 
-### Example calling `createPayment` with CURL.
+* **Example calling `createPayment` with CURL.**
 
 ```bash
 curl -u terminalid:password -H "content-Type: application/json" \
