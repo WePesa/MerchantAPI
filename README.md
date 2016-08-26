@@ -10,9 +10,9 @@ This is the client reference implementation.
 
 All requests to BITBUY's API require authentication. You can create a set of terminal credentials to use with the API in the Merchant control panel under menu option Terminals.
 
-* **API Endpoint**
+## API Endpoint
 
-* `https://api.bitbuy.ca/v1`
+  `https://api.bitbuy.ca/v1`
 
 All API requests should use the application/json content type, and must be encrypted with SSL (https).
 
