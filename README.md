@@ -119,13 +119,49 @@ curl -u terminalid:password -H "content-Type: application/json" \
      "Status":"EXPIRED",
      "LastUpdate":"2016-08-19T20:26:28",
      "Url":"https://api.bitbuy.ca/v1/invoice?id=ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu"
-}
+   }
 ```
 
 * **Example getting a payment with CURL.**
 
 ```bash
 curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu
+```
+## Get Payment Status
+* **URL**
+
+* /payments/:id/status
+
+* **Method:**
+
+  `GET`
+  
+* **Authentication:**
+
+  *Not required*
+
+* **Data Params**
+
+  `NONE`
+
+  ### Required fields.
+
+  **id** : Payment id.
+  
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+   ```json
+   {
+     "status":"EXPIRED"
+   }
+```
+
+* **Example getting payment status with CURL.**
+
+```bash
+curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
 ```
 
 
