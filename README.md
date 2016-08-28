@@ -80,7 +80,7 @@ All API requests should use the application/json content type, and must be encry
 
 ```bash
 curl -u terminalid:password -H "content-Type: application/json" \
- -X POST -d '{ "amount" : 1.23,  "currency" : "CAD" }' https://api.bitbuy.ca/v1/createPayment
+ -X POST -d '{ "amount" : 1.23,  "currency" : "CAD" }' https://api.bitbuy.ca/v1/payments
 ```
 ## Get Payment
 * **URL**
