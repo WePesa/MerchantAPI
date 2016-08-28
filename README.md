@@ -209,18 +209,18 @@ Sample client code in C#
 ========================
 
 ```csharp
-				var client =
-				new Client ("https://api.bitbuy.ca"
-				// Do not use these credentials, create a new pair in the merchant panel
-				, "TerminalId"
-				, "TerminalPassword");
+var client =
+  new Client ("https://api.bitbuy.ca"
+  // Do not use these credentials, create a new pair in the merchant panel
+  , "TerminalId"
+  , "TerminalPassword");
 
-			var request = new CreatePaymentRequest (1.00M, "btc");
+var request = new CreatePaymentRequest (1.00M, "btc");
 
-			request.Data = "1733"; // Some data, could be your order id
-			request.Ttl = 30; // minutes
+request.Data = "1733"; // Some data, could be your order id
+request.Ttl = 30; // minutes
 
-			var response = client.CreatePayment (request);
+var response = client.CreatePayment (request);
 
-			System.Diagnostics.Process.Start (response.Url);
+System.Diagnostics.Process.Start (response.Url);
 ```
