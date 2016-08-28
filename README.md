@@ -20,11 +20,15 @@ All API requests should use the application/json content type, and must be encry
 
 * **URL**
 
-* /createPayment
+* /payments
 
 * **Method:**
 
   `POST`
+  
+* **Authentication:**
+
+  *Required*
 
 * **Data Params**
 
@@ -72,12 +76,58 @@ All API requests should use the application/json content type, and must be encry
   **LastUpdate** : used in the invoice.  
   **Url** : Invoice URL; redirect customer or show inside IFRAME.  
   
-* **Example calling `createPayment` with CURL.**
+* **Example creating a payment with CURL.**
 
 ```bash
 curl -u terminalid:password -H "content-Type: application/json" \
  -X POST -d '{ "amount" : 1.23,  "currency" : "CAD" }' https://api.bitbuy.ca/v1/createPayment
 ```
+## Get Payment
+* **URL**
+
+* /payments/:id
+
+* **Method:**
+
+  `GET`
+  
+* **Authentication:**
+
+  *Required*
+
+* **Data Params**
+
+  `NONE`
+
+  ### Required fields.
+
+  **id** : Payment id.
+  
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+   ```json
+   {
+     "Id":"ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu",
+     "Total":1.23000000,
+     "Currency":"CAD",
+     "BtcRequired":0.00167342,
+     "Data":"",
+     "CreatedOn":"2016-08-19T20:19:05",
+     "ExpiresOn":"2016-08-19T20:26:05",
+     "Status":"EXPIRED",
+     "LastUpdate":"2016-08-19T20:26:28",
+     "Url":"https://api.bitbuy.ca/v1/invoice?id=ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu"
+}
+```
+
+* **Example getting a payment with CURL.**
+
+```bash
+curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu
+```
+
 
 ## Payment Status
 
