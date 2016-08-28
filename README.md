@@ -181,6 +181,14 @@ curl https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
 
 **"EXPIRED"** - 0-confirmation was not received within TTL minutes.
 
+## API Rate Limits
+
+Rate limiting of the API is primarily considered on a per-terminal basis.
+
+Rate limits are divided into 15 minute intervals. When an application exceeds the rate limit for a given API endpoint, the server will now return an HTTP 429 “Too Many Requests” response code.
+
+API request rate is limited at 180 queries per 15 minute window.
+
 ## Using the .NET client
 
 NuGet
