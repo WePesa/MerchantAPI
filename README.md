@@ -161,7 +161,7 @@ curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeV
 * **Example getting payment status with CURL.**
 
 ```bash
-curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
+curl https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
 ```
 
 
