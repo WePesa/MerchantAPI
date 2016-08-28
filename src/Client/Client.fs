@@ -18,7 +18,6 @@ type CreatePaymentRequest(amount : decimal, currency : string) =
     let mutable urlSuccess : string = null
     let mutable urlFailure : string = null
 
-    
     [<JsonProperty("Amount")>]
     member x.Amount with get() = amount and set(v) = amount <- v
     [<JsonProperty("Currency")>]
@@ -36,7 +35,7 @@ type CreatePaymentRequest(amount : decimal, currency : string) =
     [<JsonProperty("UrlFailure")>]
     member x.UrlFailure with get() = urlFailure and set(v) = urlFailure <- v
 
-type CreatePaymentResponse() =
+type Payment() =
     let mutable id : string = null
     let mutable total    : decimal = 0.00M
     let mutable currency       : string = "btc"
@@ -78,11 +77,16 @@ type CreatePaymentResponse() =
     [<JsonProperty("Url")>]
     member x.Url with get() = url and set(v) = url <- v
 
-type Client(serverUrl : string, termailId : string, password : string) =
-    
-    let endPointUrl = serverUrl + "/v1/createPayment"
+type PaymentStatus() =
+    let mutable status : string = null
 
-    let call data =
+    [<JsonProperty("Status")>]
+    member x.Status with get() = status and set(v) = status <- v
+
+type Client(serverUrl : string, termailId : string, password : string) =
+
+    let call endPoint data =
+      let endPointUrl = serverUrl + endPoint
       let request = 
         createRequest Post endPointUrl
         |> HttpClient.withBasicAuthentication termailId password
@@ -90,11 +94,27 @@ type Client(serverUrl : string, termailId : string, password : string) =
 
       getResponseBody request
 
+    let get endPoint =
+      let endPointUrl = serverUrl + endPoint
+      let request = 
+        createRequest Get endPointUrl
+        |> HttpClient.withBasicAuthentication termailId password
+
+      getResponseBody request
+
     member this.CreatePaymentAsString(request : CreatePaymentRequest) : string =
       let serializedObject = JsonConvert.SerializeObject(request)
-      let response = call serializedObject
+      let response = call "/v1/payments" serializedObject
       response
 
-    member this.CreatePayment(request : CreatePaymentRequest) : CreatePaymentResponse =
+    member this.CreatePayment(request : CreatePaymentRequest) : Payment =
         let response = this.CreatePaymentAsString(request)
-        JsonConvert.DeserializeObject<CreatePaymentResponse>(response)
+        JsonConvert.DeserializeObject<Payment>(response)
+
+    member this.GetPayment(id : String) : Payment =
+        let response = get ("/v1/payments/" + id)
+        JsonConvert.DeserializeObject<Payment>(response)
+
+    member this.GetPaymentStatus(id : String) : PaymentStatus =
+        let response = get ("/v1/payments/" + id + "/status")
+        JsonConvert.DeserializeObject<PaymentStatus>(response)
