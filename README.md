@@ -20,7 +20,7 @@ All API requests should use the application/json content type, and must be encry
 
 * **URL**
 
-* /payments
+  /payments
 
 * **Method:**
 
@@ -85,7 +85,7 @@ curl -u terminalid:password -H "content-Type: application/json" \
 ## Get Payment
 * **URL**
 
-* /payments/:id
+  /payments/:id
 
 * **Method:**
 
@@ -130,7 +130,7 @@ curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeV
 ## Get Payment Status
 * **URL**
 
-* /payments/:id/status
+  /payments/:id/status
 
 * **Method:**
 
