@@ -72,9 +72,9 @@ All API requests should use the application/json content type, and must be encry
   **BtcRequired** : The amount of Bitcoin required to pay this invoice.  
   **CreatedOn** : Date the payment session was created in UTC.  
   **ExpiresOn** : Date the payment session expired in UTC.  
-  **Status** : Payment status (see below).  
-  **LastUpdate** : used in the invoice.  
-  **Url** : Invoice URL; redirect customer or show inside IFRAME.  
+  **Status** : Payment status (see Payment status below).  
+  **LastUpdate** : Date the payment session was last updated in UTC.  
+  **Url** : Invoice URL; redirect customer or show inside IFRAME (see Invoice section below).  
   
 * **Example creating a payment with CURL.**
 
@@ -164,7 +164,6 @@ curl -u terminalid:password https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeV
 curl https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
 ```
 
-
 ## Payment Status
 
 **"WAITING"** - Waiting for 0-confirmation.
@@ -188,6 +187,12 @@ Rate limiting of the API is primarily considered on a per-terminal basis.
 Rate limits are divided into 15 minute intervals. When an application exceeds the rate limit for a given API endpoint, the server will now return an HTTP 429 “Too Many Requests” response code.
 
 API request rate is limited at 180 queries per 15 minute window.
+
+## BitBUY Invoice
+
+For every payment session created an invoice will be shown at `"https://api.bitbuy.ca/v1/invoice?id=xxxx"` where `xxxx` is the payment id. In a web application you would tipically redirect your customer to the invoice URL.
+
+You can control the look of the invoice by uploading a logo and providing merchant contact information in the merchant portal.
 
 ## Using the .NET client
 
