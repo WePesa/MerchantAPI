@@ -1,6 +1,7 @@
 ﻿namespace Monitex
 
-open HttpClient
+open HttpFs.Client
+open Hopac
 
 open System
 open System.Text
@@ -88,19 +89,21 @@ type Client(serverUrl : string, termailId : string, password : string) =
     let call endPoint data =
       let endPointUrl = serverUrl + endPoint
       let request = 
-        createRequest Post endPointUrl
-        |> HttpClient.withBasicAuthentication termailId password
-        |> withBody data
+        Request.createUrl Post endPointUrl
+        |> Request.basicAuthentication termailId password
+        |> Request.bodyString data
 
-      getResponseBody request
+      let job = Request.responseAsString request
+      run job
 
     let get endPoint =
       let endPointUrl = serverUrl + endPoint
       let request = 
-        createRequest Get endPointUrl
-        |> HttpClient.withBasicAuthentication termailId password
+        Request.createUrl Get endPointUrl
+        |> Request.basicAuthentication termailId password
 
-      getResponseBody request
+      let job = Request.responseAsString request
+      run job
 
     member this.CreatePaymentAsString(request : CreatePaymentRequest) : string =
       let serializedObject = JsonConvert.SerializeObject(request)

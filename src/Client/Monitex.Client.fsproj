@@ -57,19 +57,31 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hopac">
+      <HintPath>..\packages\Hopac.0.3.13\lib\net45\Hopac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hopac.Core">
+      <HintPath>..\packages\Hopac.0.3.13\lib\net45\Hopac.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hopac.Platform">
+      <HintPath>..\packages\Hopac.0.3.13\lib\net45\Hopac.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HttpFs">
+      <HintPath>..\packages\Http.fs.4.0.2\lib\net40\HttpFs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.3.1.2.5\lib\net40\FSharp.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="HttpClient">
-      <HintPath>..\packages\Http.fs.1.5.1\lib\net40\HttpClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
