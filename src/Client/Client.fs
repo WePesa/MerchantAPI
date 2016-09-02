@@ -4,6 +4,7 @@ open HttpFs.Client
 open Hopac
 
 open System
+open System.Runtime.Serialization
 open System.Text
 
 open Newtonsoft.Json
@@ -36,6 +37,7 @@ type CreatePaymentRequest(amount : decimal, currency : string) =
     [<JsonProperty("UrlFailure")>]
     member x.UrlFailure with get() = urlFailure and set(v) = urlFailure <- v
 
+[<DataContract>]
 type Payment() =
     let mutable id : string = null
     let mutable total    : decimal = 0.00M
@@ -49,39 +51,51 @@ type Payment() =
     let mutable url    : string = null
 
     [<JsonProperty("Id")>]
+    [<DataMember(Name = "Id")>]
     member x.Id with get() = id and set(v) = id <- v
 
     [<JsonProperty("Total")>]
+    [<DataMember(Name = "Total")>]
     member x.Total with get() = total and set(v) = total <- v
   
     [<JsonProperty("Currency")>]
+    [<DataMember(Name = "Currency")>]
     member x.Currency with get() = currency and set(v) = currency <- v
   
     [<JsonProperty("BtcRequired")>]
+    [<DataMember(Name = "BtcRequired")>]
     member x.BtcRequired with get() = btcRequired and set(v) = btcRequired <- v
 
     [<JsonProperty("Data")>]
+    [<DataMember(Name = "Data")>]
     member x.Data with get() = data and set(v) = data <- v
 
     [<JsonProperty("CreatedOn")>]
+    [<DataMember(Name = "CreatedOn")>]
     member x.CreatedOn with get() = createdOn and set(v) = createdOn <- v
 
     [<JsonProperty("ExpiresOn")>]
+    [<DataMember(Name = "ExpiresOn")>]
     member x.ExpiresOn with get() = expiresOn and set(v) = expiresOn <- v
 
     [<JsonProperty("Status")>]
+    [<DataMember(Name = "Status")>]
     member x.Status with get() = status and set(v) = status <- v
 
     [<JsonProperty("LastUpdate")>]
+    [<DataMember(Name = "LastUpdate")>]
     member x.LastUpdate with get() = last_update and set(v) = last_update <- v
 
     [<JsonProperty("Url")>]
+    [<DataMember(Name = "Url")>]
     member x.Url with get() = url and set(v) = url <- v
 
+[<DataContract>]
 type PaymentStatus() =
     let mutable status : string = null
 
     [<JsonProperty("Status")>]
+    [<DataMember(Name = "Status")>]
     member x.Status with get() = status and set(v) = status <- v
 
 type Client(serverUrl : string, termailId : string, password : string) =
