@@ -43,10 +43,11 @@ type Payment() =
     let mutable total    : decimal = 0.00M
     let mutable currency       : string = "btc"
     let mutable btcRequired    : decimal = 0.00M
+    let mutable btcAddress    : string = ""
     let mutable data  : string  = null
     let mutable createdOn    : DateTime = DateTime.UtcNow
     let mutable expiresOn    : DateTime = DateTime.UtcNow
-    let mutable status    : string = "active"
+    let mutable status    : string = "WAITING"
     let mutable last_update    : DateTime = DateTime.UtcNow
     let mutable url    : string = null
 
@@ -61,6 +62,10 @@ type Payment() =
     [<JsonProperty("Currency")>]
     [<DataMember(Name = "Currency")>]
     member x.Currency with get() = currency and set(v) = currency <- v
+
+    [<JsonProperty("BtcAddress")>]
+    [<DataMember(Name = "BtcAddress")>]
+    member x.BtcAddress with get() = btcAddress and set(v) = btcAddress <- v
   
     [<JsonProperty("BtcRequired")>]
     [<DataMember(Name = "BtcRequired")>]
