@@ -1,8 +1,4 @@
-# MerchantAPI
-
-This is a .NET client for BitBUY.ca Bitcoin Payments API.
-
-This is the client reference implementation.
+# BitBUY.ca Merchant API
 
 [![Build status](https://ci.appveyor.com/api/projects/status/95vn1krk9hajaax8/branch/master?svg=true)](https://ci.appveyor.com/project/AdemarGonzalez/merchantapi/branch/master)
 
@@ -195,6 +191,9 @@ For every payment session created an invoice will be shown at `"https://api.bitb
 You can control the look of the invoice by uploading a logo and providing merchant contact information in the merchant portal.
 
 ## Using the .NET client
+
+In this repository you can find the source code for a .NET client.
+This is the client reference implementation.
 
 NuGet
 =====
