@@ -41,7 +41,7 @@ All API requests should use the application/json content type, and must be encry
 
   **data** : optional data field value will be sent back on the callback fi there is any.  
   **ttl** : number of minutes before the payment session expires.  
-  **priority** : possible values 0, 1 and 2. 
+  **priority** : possible values 0, 1 and 2.  
   **urlCallback** : if exits BitBUY will make an HTTP POST to the url whenever the payment session status change.  
   **urlSuccess** : used in the invoice.  
   **urlFailure** : used in the invoice.  
