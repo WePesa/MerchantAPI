@@ -167,8 +167,6 @@ curl https://api.bitbuy.ca/v1/payments/ehePI2Tuuw7jeg9qeVTe3gYNebKzBRcu/status
 
 **"WAITING"** - Waiting for 0-confirmation.
 
-**"PARTIAL"** - The total sum of 0-confirmation payment is less than the amount of Bitcoin required.
-
 **"PAID"** - The total sum of 0-confirmation payment sent to the invoice address is equal or larger than the amount of Bitcoin required.
 
 **"CONFIRMED"** - Payment is confirmed; Depending on the speed setting it will be triggered at 0, 1 or 6 confirmations.
