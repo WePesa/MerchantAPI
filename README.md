@@ -224,3 +224,8 @@ var response = client.CreatePayment (request);
 
 System.Diagnostics.Process.Start (response.Url);
 ```
+
+Sample code in PHP
+==================
+
+Check out the repository https://github.com/MonitexInc/php-merchant-api-client
